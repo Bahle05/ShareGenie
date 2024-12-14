@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - ShareGenie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="bg-white text-gray-800 font-sans">
+  <!-- Navigation Bar -->
+  <nav class="bg-orange-500 p-4">
+    <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+      <div class="text-white font-bold text-2xl">ShareGenie</div>
+      <ul class="flex space-x-6 text-white">
+        <li><a href="#home" class="hover:text-orange-200">Home</a></li>
+        <li><a href="#about" class="hover:text-orange-200">About Us</a></li>
+        <li><a href="#features" class="hover:text-orange-200">Features</a></li>
+        <li><a href="#contact" class="hover:text-orange-200">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Website Detailed Information Section -->
+  <section id="home" class="bg-orange-50 p-8 mt-4 rounded-lg shadow-lg">
+    <div class="max-w-screen-xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-orange-500">Welcome to ShareGenie</h2>
+      <p class="mt-4 text-lg text-gray-600">ShareGenie is your go-to platform for seamless file sharing, collaboration, and storage. Whether you're working with a team or sharing with friends, we make the process simple and secure. Share anything, anytime, with ease.</p>
+      <p class="mt-4 text-lg text-gray-600">With intuitive tools and a user-friendly interface, ShareGenie ensures you stay connected and productive. Join thousands of users already benefiting from our platform.</p>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <div class="max-w-screen-xl mx-auto px-4 py-8">
+    <!-- Header Section -->
+    <header class="text-center bg-orange-500 text-white py-6 rounded-lg shadow-lg">
+      <h1 class="text-4xl font-semibold">Create Your ShareGenie Account</h1>
+      <p class="mt-2 text-lg">Join us and start sharing today!</p>
+    </header>
+
+    <!-- Sign Up Section -->
+    <section class="mt-12 flex justify-center items-center">
+      <div class="bg-white p-8 shadow-lg rounded-lg w-full max-w-md">
+       <!-- Sign Up Form -->
+<h2 class="text-center text-2xl font-bold text-orange-500 mb-8">Sign Up</h2>
+<form action="/auth/register" method="POST">
+  <!-- Full Name Field -->
+  <div class="mb-6">
+    <input type="text" id="name" name="name" placeholder="Full Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" />
+  </div>
+  <!-- Username Field -->
+  <div class="mb-6">
+    <input type="text" id="username" name="username" placeholder="Username" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" />
+  </div>
+  <!-- Email Field -->
+  <div class="mb-6">
+    <input type="email" id="email" name="email" placeholder="Email" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" />
+  </div>
+  <!-- Password Field -->
+  <div class="mb-6 relative">
+    <input type="password" id="password" name="password" placeholder="Password" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" />
+    <span class="absolute right-4 top-3 text-gray-500 cursor-pointer" onclick="togglePasswordVisibility()">
+      <i class="fas fa-eye"></i>
+    </span>
+  </div>
+  <!-- Confirm Password Field -->
+  <div class="mb-6 relative">
+    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" />
+    <span class="absolute right-4 top-3 text-gray-500 cursor-pointer" onclick="toggleConfirmPasswordVisibility()">
+      <i class="fas fa-eye"></i>
+    </span>
+  </div>
+  <!-- Submit Button -->
+  <button type="submit" class="w-full bg-orange-500 text-white p-3 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 transition">Sign Up</button>
+</form>
+
+
+   <div class="mt-4 text-center">
+          <p class="text-gray-600">Already have an account? <a href="/auth/login" class="text-orange-500 hover:text-orange-600">Login</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="mt-16 text-center bg-orange-50 p-8 rounded-lg shadow-lg">
+      <h2 class="text-3xl font-semibold text-orange-500">About Us</h2>
+      <p class="mt-4 text-lg text-gray-600 leading-relaxed">ShareGenie was founded with the mission to simplify file sharing and collaboration. Our platform provides users with secure and easy-to-use tools to share documents, photos, videos, and more. We believe in seamless connections and productivity without barriers.</p>
+      <p class="mt-4 text-lg text-gray-600 leading-relaxed">Our team is dedicated to ensuring your experience with ShareGenie is nothing short of extraordinary. Join us today and experience the future of sharing!</p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="text-center bg-gray-800 text-white py-4 mt-16">
+      <p>&copy; 2024 ShareGenie. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function togglePasswordVisibility() {
+      var passwordInput = document.getElementById("password");
+      var showPasswordIcon = document.querySelector(".fas");
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        showPasswordIcon.classList.remove("fa-eye");
+        showPasswordIcon.classList.add("fa-eye-slash");
+      } else {
+        passwordInput.type = "password";
+        showPasswordIcon.classList.remove("fa-eye-slash");
+        showPasswordIcon.classList.add("fa-eye");
+      }
+    }
+
+    function toggleConfirmPasswordVisibility() {
+      var confirmPasswordInput = document.getElementById("confirmPassword");
+      var showConfirmPasswordIcon = document.querySelectorAll(".fas")[1];
+
+      if (confirmPasswordInput.type === "password") {
+        confirmPasswordInput.type = "text";
+        showConfirmPasswordIcon.classList.remove("fa-eye");
+        showConfirmPasswordIcon.classList.add("fa-eye-slash");
+      } else {
+        confirmPasswordInput.type = "password";
+        showConfirmPasswordIcon.classList.remove("fa-eye-slash");
+        showConfirmPasswordIcon.classList.add("fa-eye");
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - ShareGenie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-persimmon">ShareGenie</h1>
+      <div class="flex gap-4">
+        <a href="/dashboard" class="text-persimmon font-medium hover:underline">Dashboard</a>
+        <a href="/" class="text-persimmon font-medium hover:underline">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Section -->
+  <section class="p-6 bg-white shadow-md mt-4 max-w-xl mx-auto rounded-lg">
+    <h2 class="text-2xl font-bold text-gray-800">Your Profile</h2>
+
+    <!-- User Information -->
+    <div class="mt-4 flex items-center">
+      <% if (user.profilePic) { %>
+        <img src="<%= user.profilePic %>" alt="Profile Picture" class="w-24 h-24 rounded-full shadow-md mr-4">
+      <% } else { %>
+        <div class="w-24 h-24 rounded-full bg-gray-300 shadow-md flex items-center justify-center text-gray-500 mr-4">
+          <span>No Picture</span>
+        </div>
+      <% } %>
+      <div>
+        <p class="text-lg font-medium text-gray-800"><%= user.name %></p>
+        <p class="text-gray-600"><%= user.email %></p>
+        <p class="text-gray-600"><%= user.location || 'Location not provided' %></p>
+        <p class="text-gray-600"><%= user.ethnicity || 'Ethnicity not provided' %></p>
+        <p class="text-gray-600"><%= user.bio || 'No bio available' %></p>
+      </div>
+    </div>
+
+    <!-- Profile Picture Upload Form -->
+    <form action="/profile" method="POST" enctype="multipart/form-data" class="mt-6">
+      <label for="profilePic" class="block text-gray-700 font-medium mb-2">Upload Profile Picture:</label>
+      <input type="file" id="profilePic" name="profilePic" class="form-input p-2 border border-gray-300 rounded-md">
+      <button type="submit" class="mt-4 bg-persimmon text-white px-4 py-2 rounded-md hover:bg-persimmon-dark">
+        Upload
+      </button>
+    </form>
+
+    <!-- Edit Profile Form -->
+    <form action="/profile/edit" method="POST" class="mt-6">
+      <div class="mb-4">
+        <label for="name" class="block text-gray-700 font-medium mb-2">Name:</label>
+        <input type="text" id="name" name="name" value="<%= user.name %>" class="form-input w-full p-2 border border-gray-300 rounded-md" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="location" class="block text-gray-700 font-medium mb-2">Location:</label>
+        <input type="text" id="location" name="location" value="<%= user.location %>" class="form-input w-full p-2 border border-gray-300 rounded-md">
+      </div>
+
+      <div class="mb-4">
+        <label for="ethnicity" class="block text-gray-700 font-medium mb-2">Ethnicity:</label>
+        <input type="text" id="ethnicity" name="ethnicity" value="<%= user.ethnicity %>" class="form-input w-full p-2 border border-gray-300 rounded-md">
+      </div>
+
+      <div class="mb-4">
+        <label for="bio" class="block text-gray-700 font-medium mb-2">Bio:</label>
+        <textarea id="bio" name="bio" rows="4" class="form-input w-full p-2 border border-gray-300 rounded-md"><%= user.bio %></textarea>
+      </div>
+
+      <button type="submit" class="bg-persimmon text-white px-4 py-2 rounded-md hover:bg-persimmon-dark">
+        Save Changes
+      </button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white mt-8 p-4">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 ShareGenie. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
