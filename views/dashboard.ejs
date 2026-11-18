@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - ShareGenie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom Colors */
+    .bg-light-persimmon {
+      background-color: #FF9F7E; /* Soft persimmon shade */
+    }
+    .bg-muted-cream {
+      background-color: #FDF3E1; /* Muted cream */
+    }
+
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Form Input Styles */
+    .form-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #D1D5DB;
+      border-radius: 0.5rem;
+      background-color: #F9FAFB;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-input:focus {
+      border-color: #FF6F40;
+      box-shadow: 0 0 0 3px rgba(255, 111, 64, 0.4);
+    }
+
+    /* Dropdown Styles */
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    .dropdown-item {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      text-align: left;
+      color: #4a5568;
+      transition: background-color 0.2s;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f7fafc;
+      color: #1a202c;
+    }
+
+    /* Form Button */
+    .btn-primary {
+      background-color: #FF6F40;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #FF9F7E;
+      box-shadow: 0px 6px 12px rgba(255, 111, 64, 0.3);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md p-4">
+    <div class="container mx-auto flex justify-between items-center relative">
+      <h1 class="text-2xl font-bold text-persimmon">ShareGenie</h1>
+      
+      <div class="flex items-center space-x-6">
+        <!-- About Us Link -->
+        <a 
+          href="/about-us" 
+          class="text-gray-800 font-medium hover:text-persimmon transition duration-200"
+        >
+          About Us
+        </a>
+
+        <!-- Hamburger Menu Dropdown -->
+        <div class="dropdown relative">
+          <button 
+            class="text-black font-medium hover:underline flex items-center space-x-2" 
+            aria-label="Menu" 
+            onclick="toggleDropdown()">
+            <div class="w-6 h-0.5 bg-black"></div>
+            <div class="w-6 h-0.5 bg-black"></div>
+            <div class="w-6 h-0.5 bg-black"></div>
+          </button>
+          <div class="dropdown-menu hidden">
+            <a href="/profile" class ="dropdown-item"> View Profile</a>
+            <a href="/profile/edit" class="dropdown-item">Edit Profile</a>
+            <a href="/logout" class="dropdown-item">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Welcome Section -->
+  <section class="p-6 bg-muted-cream shadow-md mt-4">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-semibold text-gray-800">Welcome, <%= user.name %>!</h2>
+      <p class="text-gray-600 mt-2">What are you looking for today?</p>
+    </div>
+  </section>
+
+  <!-- Search Bar -->
+  <div class="container mx-auto mt-6">
+    <input
+      type="text"
+      placeholder="Search donations"
+      class="w-full p-3 rounded-md shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-persimmon"
+      aria-label="Search donations"
+    />
+  </div>
+
+  <!-- Categories -->
+  <div class="container mx-auto mt-6">
+    <h3 class="text-lg font-medium text-gray-800 mb-4">Categories</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <button class="btn bg-persimmon text-gray hover:bg-light-persimmon">Clothes</button>
+      <button class="btn bg-muted-cream text-gray-800 hover:bg-light-persimmon">Books</button>
+      <button class="btn bg-persimmon text-gray hover:bg-light-persimmon">Furniture</button>
+      <button class="btn bg-muted-cream text-gray-800 hover:bg-light-persimmon">Electronics</button>
+    </div>
+  </div>
+
+  <!-- Donate Section -->
+  <section class="container mx-auto mt-8 p-6 bg-white shadow-md rounded-lg">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Donate an Item</h3>
+    <form action="/donate" method="POST" class="space-y-4">
+      <div>
+        <label for="item" class="block text-gray-700 font-medium mb-2">Item to Donate</label>
+        <input 
+          type="text" 
+          id="item" 
+          name="item" 
+          placeholder="e.g., Winter Jacket" 
+          class="form-input"
+          required
+        />
+      </div>
+      <div>
+        <label for="location" class="block text-gray-700 font-medium mb-2">Your Location</label>
+        <input 
+          type="text" 
+          id="location" 
+          name="location" 
+          placeholder="e.g., New York, NY" 
+          class="form-input"
+          required
+        />
+      </div>
+      <div>
+        <label for="contact" class="block text-gray-700 font-medium mb-2">Contact Details</label>
+        <input 
+          type="text" 
+          id="contact" 
+          name="contact" 
+          placeholder="e.g., +1234567890 or email@example.com" 
+          class="form-input"
+          required
+        />
+      </div>
+      <button type="submit" class="btn-primary">Submit Donation</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white mt-8 p-4">
+    <div class="container mx-auto text-center">
+      <p>© 2024 ShareGenie. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleDropdown() {
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+      dropdownMenu.classList.toggle('hidden');
+    }
+
+    // Close dropdown if clicked outside
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropdown button')) {
+        const dropdowns = document.getElementsByClassName("dropdown-menu");
+        for (let i = 0; i < dropdowns.length; i++) {
+          const openDropdown = dropdowns[i];
+          if (!openDropdown.classList.contains('hidden')) {
+            openDropdown.classList.add('hidden');
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

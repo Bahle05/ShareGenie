@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile - ShareGenie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom Colors */
+    .bg-light-persimmon {
+      background-color: #FF9F7E; /* Soft persimmon shade */
+    }
+    .bg-muted-cream {
+      background-color: #FDF3E1; /* Muted cream */
+    }
+
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Form Input Styles */
+    .form-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #D1D5DB;
+      border-radius: 0.5rem;
+      background-color: #F9FAFB;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-input:focus {
+      border-color: #FF6F40;
+      box-shadow: 0 0 0 3px rgba(255, 111, 64, 0.4);
+    }
+
+    /* Form Button */
+    .btn-primary {
+      background-color: #FF6F40;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #FF9F7E;
+      box-shadow: 0px 6px 12px rgba(255, 111, 64, 0.3);
+    }
+
+    /* Back Link */
+    .back-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #FF6F40;
+      text-decoration: underline;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: #FF9F7E;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Edit Profile Section -->
+  <div class="container mx-auto mt-10 p-6 bg-white shadow-md rounded-lg max-w-lg">
+    <h1 class="text-2xl font-bold text-center text-persimmon mb-4">Edit Profile</h1>
+
+    <form action="/profile/edit" method="POST" class="space-y-4">
+      <div>
+        <label for="name" class="block text-gray-700 font-medium">Name:</label>
+        <input type="text" id="name" name="name" value="<%= user.name %>" class="form-input" required>
+      </div>
+
+      <div>
+        <label for="location" class="block text-gray-700 font-medium">Location:</label>
+        <input type="text" id="location" name="location" value="<%= user.location %>" class="form-input">
+      </div>
+
+      <div>
+        <label for="ethnicity" class="block text-gray-700 font-medium">Ethnicity:</label>
+        <input type="text" id="ethnicity" name="ethnicity" value="<%= user.ethnicity %>" class="form-input">
+      </div>
+
+      <div>
+        <label for="bio" class="block text-gray-700 font-medium">Bio:</label>
+        <textarea id="bio" name="bio" rows="4" class="form-input"><%= user.bio %></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary w-full">Save Changes</button>
+    </form>
+
+    <a href="/profile" class="back-link">Back to Profile</a>
+  </div>
+</body>
+</html>

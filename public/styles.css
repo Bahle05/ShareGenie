@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;  /* White background for clean, modern look */
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Main Container */
+  .main-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: #FF6A13;  /* Persimmon color */
+    color: #fff;
+    padding: 20px;
+  }
+  
+  header h1 {
+    font-size: 3rem;
+  }
+  
+  header p {
+    font-size: 1.2rem;
+  }
+  
+  /* Auth Section */
+  .auth-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #f8f8f8;  /* Light gray background */
+  }
+  
+  .form-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;  /* White background for form */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #ddd;  /* Soft border */
+  }
+  
+  .form-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #FF6A13;  /* Persimmon color */
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  button.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #FF6A13;  /* Persimmon color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  button.btn:hover {
+    background-color: #e65c10;  /* Slightly darker persimmon */
+  }
+  
+  button.btn:active {
+    background-color: #ff5722;  /* Darker persimmon when clicked */
+  }
+  
+  /* About Us Section */
+  .about-us {
+    margin-top: 50px;
+    padding: 40px;
+    background-color: #FFFAF0;  /* Very light persimmon-colored background */
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-us h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #FF6A13;  /* Persimmon color */
+  }
+  
+  .about-us p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;  /* Dark footer for contrast */
+    color: white;
+  }
+  
+  footer p {
+    font-size: 1rem;
+  }
+  

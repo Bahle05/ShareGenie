@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShareGenie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .btn-3d {
+      background: linear-gradient(to bottom, #ffa726, #fb8c00);
+      color: white;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2), inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-3d:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3), inset 0 -2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-3d:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 -1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .input-style {
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .input-style:focus {
+      border-color: #ffa726;
+      box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
+      outline: none;
+    }
+
+    .form-container {
+      background: linear-gradient(to bottom, #ffffff, #fbe9e7);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 24px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Navigation Bar -->
+  <nav class="bg-orange-500 p-4">
+    <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+      <div class="text-white font-bold text-2xl">ShareGenie</div>
+      <ul class="flex space-x-6 text-white">
+        <li><a href="#home" class="hover:text-orange-200">Home</a></li>
+        <li><a href="#about" class="hover:text-orange-200">About Us</a></li>
+        <li><a href="#features" class="hover:text-orange-200">Features</a></li>
+        <li><a href="#contact" class="hover:text-orange-200">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Website Detailed Information Section -->
+  <section id="home" class="bg-orange-50 p-8 mt-4 rounded-lg shadow-lg">
+    <div class="max-w-screen-xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-orange-500">Welcome to ShareGenie</h2>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <div class="max-w-screen-xl mx-auto px-4 py-8">
+    <!-- Login/Register Section -->
+    <section class="mt-12 flex justify-center items-center">
+      <div class="form-container w-full max-w-md">
+        <h2 class="text-center text-2xl font-bold text-orange-500 mb-8">Login to Your Account</h2>
+        <form action="/auth/login" method="POST">
+          <div class="mb-6">
+            <input type="email" id="email" name="email" placeholder="Email" required class="input-style w-full" />
+          </div>
+          <div class="mb-6 relative">
+            <input type="password" id="password" name="password" placeholder="Password" required class="input-style w-full" />
+            <span class="absolute right-4 top-3 text-gray-500 cursor-pointer" onclick="togglePasswordVisibility()">
+              <i class="fas fa-eye"></i>
+            </span>
+          </div>
+          <button type="submit" class="btn-3d w-full">Login</button>
+        </form>
+        <div class="mt-4 flex justify-between">
+          <button class="text-orange-500 hover:text-orange-600" onclick="window.location.href='/auth/forgot-password'">Forgot Password?</button>
+          <button class="text-orange-500 hover:text-orange-600" onclick="window.location.href='/auth/register'">Sign Up</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="mt-16 text-center bg-orange-50 p-8 rounded-lg shadow-lg">
+      <h2 class="text-3xl font-semibold text-orange-500">About Us</h2>
+      <p class="mt-4 text-lg text-gray-600 leading-relaxed">
+        Welcome to ShareGenie, the platform that connects generosity with those in need!
+        ShareGenie is a unique website designed to make donating and finding donations effortless. 
+        Whether you're looking to give away items you no longer need or searching for something specific, ShareGenie brings donors and seekers together in one easy-to-use space.
+      </p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="text-center bg-gray-800 text-white py-4 mt-16">
+      <p>&copy; 2024 ShareGenie. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function togglePasswordVisibility() {
+      var passwordInput = document.getElementById("password");
+      var showPasswordIcon = document.querySelector(".fas");
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        showPasswordIcon.classList.remove("fa-eye");
+        showPasswordIcon.classList.add("fa-eye-slash");
+      } else {
+        passwordInput.type = "password";
+        showPasswordIcon.classList.remove("fa-eye-slash");
+        showPasswordIcon.classList.add("fa-eye");
+      }
+    }
+  </script>
+</body>
+</html>
